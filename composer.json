@@ -1,0 +1,19 @@
+{
+    "name": "mint/s12-evaluation-back-oquiz-cindyj17",
+    "authors": [
+        {
+            "name": "cindyj17",
+            "email": "cindy.jag@hotmail.fr"
+        }
+    ],
+    "require": {
+        "altorouter/altorouter": "^1.2",
+        "league/plates": "^3.3",
+        "symfony/var-dumper": "^3.4"
+    },
+    "autoload": {
+      "psr-4": {
+        "Oquiz\\": "src/"
+      }
+    }
+}
