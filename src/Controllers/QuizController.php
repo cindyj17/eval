@@ -16,11 +16,12 @@ class QuizController extends CoreController{
         $results = \Oquiz\Models\QuestionModel::findAll();
 
         // On transmet les informations du quiz au template
-        echo $this->templates->render('front/quiz',
-        [
-            'quiz' => $result,
-            'questions' => $results,
-        ]
-    );
+        $this->render(
+            'front/quiz',
+            [
+                'quiz' => $result,
+                'questions' => $results,
+            ]
+        );
     }
 }

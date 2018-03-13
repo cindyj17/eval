@@ -2,11 +2,11 @@
 
 namespace Oquiz\Controllers;
 
-class MainController extends CoreController{
-
+class MainController extends CoreController
+{
     // Affiche la page d'accueil
-    public function indexAction() {
-
+    public function indexAction()
+    {
         // On récupère la liste des quizzes
         // afin de pouvoir les transmettre au template
         $results = \Oquiz\Models\QuizModel::findAll();
@@ -14,7 +14,7 @@ class MainController extends CoreController{
         $result = \Oquiz\Models\UserModel::findAll();
 
         // J'affiche le template "home.php"
-        echo $this->templates->render(
+        $this->render(
             'main/home',
             [
                 'quizzes' => $results,
@@ -24,9 +24,16 @@ class MainController extends CoreController{
     }
 
     // Affiche la page 404
-    public function error404() {
-
+    public function error404()
+    {
         // J'affiche le template "404.php"
-        echo $this->templates->render('main/404');
+        $this->render('main/404');
+    }
+
+    // Affiche la page 404
+    public function error500()
+    {
+        // J'affiche le template "404.php"
+        $this->render('main/404');
     }
 }

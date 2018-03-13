@@ -2,15 +2,15 @@
 
 namespace Oquiz\Controllers;
 
-class UserController extends CoreController {
+class UserController extends CoreController
+{
 
-  //Page de connexion
-    public function signin() {
-
+    //Page de connexion
+    public function signin()
+    {
         $errors = [];
 
         if (!empty($_POST)) {
-
             // Un visiteur essaie de se connecter
             // On vérifie l'email + mot de passe
             // pour savoir si le compte existe bien
@@ -18,46 +18,45 @@ class UserController extends CoreController {
             $password = $_POST['password'];
 
             // On vérifie si le compte existe
-            $user = \Oquiz\Models\UserModel::checkAccount( $email, $password );
+            $user = \Oquiz\Models\UserModel::checkAccount($email, $password);
 
             if (!$user) {
 
                 // C'est pas bon, on s'arrête là
                 $errors[] = 'Le compte n\'existe pas';
-            }
-            else {
+            } else {
 
                 // On connecte notre utilisateur
-                \Oquiz\Models\UserModel::connect( $user );
-                header('Location: '. $this->router->generate('home'));
-                exit();
+                \Oquiz\Models\UserModel::connect($user);
+                $this->redirect('home');
             }
         }
 
         // On affiche le template
-        echo $this->templates->render('user/signin', ['errors' => $errors]);
+        $this->render('user/signin', ['errors' => $errors]);
     }
 
     // Déconnexion
-    public function logout() {
-
+    public function logout()
+    {
         \Oquiz\Models\UserModel::disconnect();
-        header('Location: ' . $this->router->generate( 'home' ));
+        $this->redirect('home');
     }
 
 
     // Page de profil
-    public function read() {
-
+    public function read()
+    {
         // On récupère l'utilisateur à partir de son ID
-        $user = \Oquiz\Models\UserModel::getUser(  );
-dump($user);
+        $user = \Oquiz\Models\UserModel::getUser();
+
         // On transmet les informations de l'utilisateur au template
-        echo $this->templates->render('user/read',
-        [
-            'user' => $user
-        ]
-    );
+        $this->render(
+            'user/read',
+            [
+                'user' => $user
+            ]
+        );
     }
 
 }

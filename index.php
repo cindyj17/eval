@@ -11,4 +11,5 @@ require(__DIR__ . '/vendor/autoload.php');
 $application = new Oquiz\Application();
 
 // On la démarre
+$application->start();
 $application->run();

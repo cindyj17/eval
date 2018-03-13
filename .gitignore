@@ -1,0 +1,5 @@
+.gitignore
+.idea
+.htaccess
+/vendor/
+config.ini
